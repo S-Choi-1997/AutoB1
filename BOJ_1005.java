@@ -1,67 +1,31 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
-
-public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
-
-        int T = Integer.parseInt(br.readLine());
-
-        for (int t = 0; t < T; t++) {
-            st = new StringTokenizer(br.readLine());
-            int N = Integer.parseInt(st.nextToken());
-            int K = Integer.parseInt(st.nextToken());
-
-            int[] node = new int[N];
-            int[] time = new int[N];
-            int[] result = new int[N];
-            ArrayList<Integer>[] arr = new ArrayList[N];
-
-            for (int i = 0; i < N; i++) {
-                arr[i] = new ArrayList<>();
+public class CombinedBlogCode {
+    public static void main(String[] args) {
+        int[] numbers = {3, 7, 2, 9, 1};
+        int sum = 0;
+        int max = numbers[0];
+        
+        System.out.print("원본 배열: ");
+        for (int num : numbers) {
+            System.out.print(num + " ");
+            sum += num;
+            if (num > max) {
+                max = num;
             }
-
-            st = new StringTokenizer(br.readLine());
-            for (int i = 0; i < N; i++) {
-                time[i] = Integer.parseInt(st.nextToken());
-            }
-
-            for (int i = 0; i < K; i++) {
-                st = new StringTokenizer(br.readLine());
-                int x = Integer.parseInt(st.nextToken());
-                int y = Integer.parseInt(st.nextToken());
-
-                arr[x - 1].add(y - 1);
-                node[y - 1]++;
-            }
-
-            int W = Integer.parseInt(br.readLine());
-
-            Queue<Integer> qu = new LinkedList<>();
-            for (int i = 0; i < N; i++) {
-                if (node[i] == 0) {
-                    result[i] = time[i];
-                    qu.add(i);
-                }
-            }
-
-            while (!qu.isEmpty()) {
-                int b = qu.poll();
-
-                for (int i : arr[b]) {
-                    result[i] = Math.max(result[i], time[i] + result[b]);
-                    if (--node[i] == 0)
-                        qu.add(i);
-                }
-            }
-
-            System.out.println(result[W - 1]);
         }
+        
+        System.out.println("\n합계: " + sum);
+        System.out.println("최대값: " + max);
+        
+        String[][] users = {{"Alice", "28"}, {"Bob", "32"}, {"Charlie", "25"}};
+        System.out.println("\n사용자 정보:");
+        for (String[] user : users) {
+            System.out.println("이름: " + user[0] + ", 나이: " + user[1]);
+        }
+        
+        int factorialResult = 1;
+        for (int i = 1; i <= 5; i++) {
+            factorialResult *= i;
+        }
+        System.out.println("\n5! = " + factorialResult);
     }
 }
