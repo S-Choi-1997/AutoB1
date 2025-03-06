@@ -10,7 +10,9 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         int A = Integer.parseInt(st.nextToken());
         int B = Integer.parseInt(st.nextToken());
+
         System.out.println(A + B);
+
         br.close();
     }
 }
